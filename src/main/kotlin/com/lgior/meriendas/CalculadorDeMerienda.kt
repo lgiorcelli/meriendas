@@ -13,7 +13,7 @@ class CalculadorDeMerienda(
 ) {
 
     fun calcularMerienda(desde: LocalDate, hasta: LocalDate): List<Merienda> {
-        val dias = servicioDeDias.obtenerDiasEntre(desde, hasta)
+        val dias = servicioDeDias.obtenerDiasHabilesEntre(desde, hasta)
 
         return dias.mapIndexed { index, dia ->  definirMerienda(dia, index) }
     }

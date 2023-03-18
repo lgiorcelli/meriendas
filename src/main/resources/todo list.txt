@@ -1,0 +1,3 @@
+- Poder evitar que una familia caiga un dia determinado de la semana
+    - Ej, la flia de giovanna no puede preparar los miercoles merienda.
+- Exportar por semana los resultados, con un footer definido

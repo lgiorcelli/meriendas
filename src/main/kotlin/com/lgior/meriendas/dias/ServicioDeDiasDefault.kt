@@ -6,7 +6,15 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
+/**
+ * Este servicio empieza a dejar de tener sentido y empiezo a creer q necesito un calendario dibujado
+ * al estilo del de feriados (https://www.argentina.gob.ar/interior/feriados-nacionales-2023)
+ * con la info que tienen hoy los dias, pero haber filtrado feriados y fines de semana me obliga a
+ * "adivinar" cuantos dias hay y saltearme feriados
+ */
 class ServicioDeDiasDefault(private val inicioDeClases: LocalDate, archivoDeFeriados: String) : ServicioDeDias {
+    private val inicioDelAño: LocalDate = "01 Jan 2023".toLocalDate()
+
     private val semanaHabil: Set<DayOfWeek> =
         setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
     private val feriados: Set<LocalDate>
@@ -16,18 +24,28 @@ class ServicioDeDiasDefault(private val inicioDeClases: LocalDate, archivoDeFeri
     }
 
     private fun leerFeriados(archivoDeFeriados: String): Set<LocalDate> {
-        val lines = readCsv(archivoDeFeriados)
-        return lines.map { it.first().toLocalDate() }.toSet()
+        val feriados = readCsv(archivoDeFeriados)
+        return feriados.map { it.first().toLocalDate() }.toSet()
     }
 
-    override fun obtenerDiasEntre(desde: LocalDate, hasta: LocalDate): List<Dia> {
+    override fun obtenerDiasHabilesEntre(desde: LocalDate, hasta: LocalDate): List<Dia> {
         val result: List<LocalDate> = crearDiasEntre(desde, hasta)
         val diasHabiles = filtrarDiasHabiles(result)
         val diasHabilesDesdeInicio = contarDiasHabilesDesdeInicio()
 
-        return diasHabiles.mapIndexed { index, localDate ->
-            Dia(localDate.dayOfWeek, diasHabilesDesdeInicio + index, localDate)
+        return diasHabiles.mapIndexed { index, fecha ->
+            Dia(
+                fecha.dayOfWeek,
+                diasHabilesDesdeInicio + index,
+                fecha,
+                numeroDeSemana(fecha)
+            )
         }
+    }
+
+    private fun numeroDeSemana(fecha: LocalDate): Int {
+        val nroDeSemana = ChronoUnit.WEEKS.between(inicioDelAño, fecha)
+        return nroDeSemana.toInt() + 1
     }
 
     private fun filtrarDiasHabiles(dates: List<LocalDate>): List<LocalDate> {
