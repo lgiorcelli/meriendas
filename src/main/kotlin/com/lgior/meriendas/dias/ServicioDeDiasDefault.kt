@@ -79,20 +79,5 @@ class ServicioDeDiasDefault(private val inicioDeClases: LocalDate, archivoDeFeri
             .filter { it.isNotBlank() }
             .map { it.split(";") }
     }
-    /*
-        private fun crearDiasEntre(
-        desde: LocalDate,
-        hasta: LocalDate
-    ): MutableList<Dia> {
-        val periodoEntreFechas = Period.between(desde, hasta).days
-        var diasDesdeInicioDeClases = Period.between(inicioDeClases, desde).days
-        val result: MutableList<Dia> = mutableListOf()
-        for (i in 0..periodoEntreFechas) {
-            val date = desde.plusDays(i.toLong())
-            val dia = Dia(date.dayOfWeek,diasDesdeInicioDeClases++)
-            result.add(dia)
-        }
-        return result
-    }
-     */
+
 }
