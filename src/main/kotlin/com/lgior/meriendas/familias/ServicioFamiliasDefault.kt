@@ -19,7 +19,8 @@ class ServicioFamiliasDefault(fileName: String) : ServicioFamilias {
     }
 
     private fun readCsv(fileName: String): List<Familia> {
-        val file = File(fileName)
+        val resource = this::class.java.getResource("/familias_1.csv")
+        val file = File(resource.file)
         val inputStream = file.inputStream()
         val reader = inputStream.bufferedReader()
         return reader.lineSequence()
