@@ -18,7 +18,8 @@ data class Dia(
             DayOfWeek.WEDNESDAY -> "Miércoles"
             DayOfWeek.THURSDAY -> "Jueves"
             DayOfWeek.FRIDAY -> "Viernes"
-            else -> "Fin de semana"
+            DayOfWeek.SATURDAY -> "Sábado"
+            DayOfWeek.SUNDAY -> "Domingo"
         }
     }
 

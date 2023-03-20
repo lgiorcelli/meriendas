@@ -37,19 +37,28 @@ class ServicioDeDiasDefaultTest {
     fun `contar correctamente los dias para meses diferentes`() {
         val desde = "10 Mar 2023".toLocalDate()
         val hasta = "10 May 2023".toLocalDate()
-        val dias = servicio.obtenerDiasHabilesEntre(desde, hasta)
+        val calendario = servicio.obtenerCalendarioEntre(desde, hasta)
 
-        assertEquals(43, dias.size)
+        assertEquals(62, calendario.diasTotal())
 
-        val inicio = dias[0]
+        val inicio = calendario.dias[0]
         assertEquals(10, inicio.numeroDeSemana)
         assertEquals(DayOfWeek.FRIDAY, inicio.dayOfWeek)
         assertEquals(desde, inicio.date)
 
-        val unaSemanaHabilDespues = dias[4]
-        assertEquals("16 Mar 2023".toLocalDate(), unaSemanaHabilDespues.date)
-        assertEquals(DayOfWeek.THURSDAY, unaSemanaHabilDespues.dayOfWeek)
-        assertEquals(11, unaSemanaHabilDespues.numeroDeSemana)
+        val semana = calendario.obtenerSemana(11)
+        assertEquals(7, semana.size)
+        assertEquals("Domingo", semana[0].nombre())
+        assertEquals("12 Mar 2023".toLocalDate(), semana[0].date)
+
+        assertEquals("Lunes", semana[1].nombre())
+        assertEquals("Martes", semana[2].nombre())
+        assertEquals("Miércoles", semana[3].nombre())
+        assertEquals("Jueves", semana[4].nombre())
+        assertEquals("Viernes", semana[5].nombre())
+
+        assertEquals("Sábado", semana[6].nombre())
+        assertEquals("18 Mar 2023".toLocalDate(), semana[6].date)
 
     }
 

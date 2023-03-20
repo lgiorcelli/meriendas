@@ -43,6 +43,19 @@ class ServicioDeDiasDefault(private val inicioDeClases: LocalDate, archivoDeFeri
         }
     }
 
+    override fun obtenerCalendarioEntre(desde: LocalDate, hasta: LocalDate): Calendario {
+        val result: List<LocalDate> = crearDiasEntre(desde, hasta)
+        val dias = result.mapIndexed { index, fecha ->
+            Dia(
+                fecha.dayOfWeek,
+                index,
+                fecha,
+                numeroDeSemana(fecha)
+            )
+        }
+        return Calendario(dias)
+    }
+
     private fun numeroDeSemana(fecha: LocalDate): Int {
         val nroDeSemana = ChronoUnit.WEEKS.between(inicioDelAño, fecha)
         return nroDeSemana.toInt() + 1
