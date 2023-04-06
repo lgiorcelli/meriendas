@@ -1,0 +1,62 @@
+/Users/workia/Library/Java/JavaVirtualMachines/azul-18.0.2.1/Contents/Home/bin/java -javaagent:/Applications/IntelliJ IDEA CE.app/Contents/lib/idea_rt.jar=50847:/Applications/IntelliJ IDEA CE.app/Contents/bin -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath /Users/workia/sources/mio/meriendas/build/classes/kotlin/main:/Users/workia/sources/mio/meriendas/build/resources/main:/Users/workia/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.7.21/5407c3593c58860cec5ee3f66c468396b42f4c2b/kotlin-stdlib-jdk8-1.7.21.jar:/Users/workia/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.7.21/a0ba09615c2213d580315e234b3febfea25b757e/kotlin-stdlib-jdk7-1.7.21.jar:/Users/workia/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.7.21/1a2eaf898a0dda83037034b10a42053cf8a7caf8/kotlin-stdlib-1.7.21.jar:/Users/workia/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.7.21/cb02257de8e13e8498f8e2f69f742f2d438e794d/kotlin-stdlib-common-1.7.21.jar:/Users/workia/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar com.lgior.meriendas.MainKt
+Se obtuvieron 80 días entre 2023-03-13 y 2023-05-31
+Responsable;Preparación;Fecha
+Familia de Maite Barenstein; Arroz; Lunes 13 Mar 2023
+Familia de Fénix Barro Zabala; Cebada; Martes 14 Mar 2023
+Familia de Catherina Sofía Bequio; Mijo; Miércoles 15 Mar 2023
+Familia de Agustín Blinoff; Centeno; Jueves 16 Mar 2023
+Familia de Giovanni Carusillo; Avena; Viernes 17 Mar 2023
+Familia de Vera Contartese; Arroz; Lunes 20 Mar 2023
+Familia de Martina Farías; Cebada; Martes 21 Mar 2023
+Familia de Giovanna Gallotti Valdez; Mijo; Miércoles 22 Mar 2023
+Familia de Baltasar García; Centeno; Jueves 23 Mar 2023
+Familia de Vera Giorcelli; Arroz; Lunes 27 Mar 2023
+Familia de Simón Gulluni Irchik; Cebada; Martes 28 Mar 2023
+Familia de Ursula Montecchiarini; Mijo; Miércoles 29 Mar 2023
+Familia de Simona Pereyra Ponce; Centeno; Jueves 30 Mar 2023
+Familia de Emma Pérez; Avena; Viernes 31 Mar 2023
+Familia de Sathya Romero; Arroz; Lunes 03 Apr 2023
+Familia de Fidel Ruiz Díaz Da Fonseca; Cebada; Martes 04 Apr 2023
+Familia de Nagual Vega; Mijo; Miércoles 05 Apr 2023
+Familia de Felipe Verissimo; Arroz; Lunes 10 Apr 2023
+Familia de Maite Barenstein; Cebada; Martes 11 Apr 2023
+Familia de Fénix Barro Zabala; Mijo; Miércoles 12 Apr 2023
+Familia de Catherina Sofía Bequio; Centeno; Jueves 13 Apr 2023
+Familia de Agustín Blinoff; Avena; Viernes 14 Apr 2023
+Familia de Giovanni Carusillo; Arroz; Lunes 17 Apr 2023
+Familia de Vera Contartese; Cebada; Martes 18 Apr 2023
+Familia de Martina Farías; Mijo; Miércoles 19 Apr 2023
+Familia de Giovanna Gallotti Valdez; Centeno; Jueves 20 Apr 2023
+Familia de Baltasar García; Avena; Viernes 21 Apr 2023
+Familia de Vera Giorcelli; Arroz; Lunes 24 Apr 2023
+Familia de Simón Gulluni Irchik; Cebada; Martes 25 Apr 2023
+Familia de Ursula Montecchiarini; Mijo; Miércoles 26 Apr 2023
+Familia de Simona Pereyra Ponce; Centeno; Jueves 27 Apr 2023
+Familia de Emma Pérez; Avena; Viernes 28 Apr 2023
+Familia de Sathya Romero; Cebada; Martes 02 May 2023
+Familia de Fidel Ruiz Díaz Da Fonseca; Mijo; Miércoles 03 May 2023
+Familia de Nagual Vega; Centeno; Jueves 04 May 2023
+Familia de Felipe Verissimo; Avena; Viernes 05 May 2023
+Familia de Maite Barenstein; Arroz; Lunes 08 May 2023
+Familia de Fénix Barro Zabala; Cebada; Martes 09 May 2023
+Familia de Catherina Sofía Bequio; Mijo; Miércoles 10 May 2023
+Familia de Agustín Blinoff; Centeno; Jueves 11 May 2023
+Familia de Giovanni Carusillo; Avena; Viernes 12 May 2023
+Familia de Vera Contartese; Arroz; Lunes 15 May 2023
+Familia de Martina Farías; Cebada; Martes 16 May 2023
+Familia de Giovanna Gallotti Valdez; Mijo; Miércoles 17 May 2023
+Familia de Baltasar García; Centeno; Jueves 18 May 2023
+Familia de Vera Giorcelli; Avena; Viernes 19 May 2023
+Familia de Simón Gulluni Irchik; Arroz; Lunes 22 May 2023
+Familia de Ursula Montecchiarini; Cebada; Martes 23 May 2023
+Familia de Simona Pereyra Ponce; Mijo; Miércoles 24 May 2023
+Familia de Emma Pérez; Arroz; Lunes 29 May 2023
+Familia de Sathya Romero; Cebada; Martes 30 May 2023
+Familia de Fidel Ruiz Díaz Da Fonseca; Mijo; Miércoles 31 May 2023
+;Las preparaciones deben ser vegetarianas (sin carne, jamón o pescado);
+;Se agradece mucho incorporar una opción vegana para Sathya o avisar con tiempo a Cecilia 11-6532-4391.;
+;Ademas de la merienda, llevar 2 kilos de fruta de estacion lavada.;
+;Si la merienda es caliente por favor avisar al momento de entregarla.;
+;Si alguna familia por alguna razon no puede llevar la merienda por favor avisar con tiempo asi los cubrimos de alguna manera.;
+
+Process finished with exit code 0
