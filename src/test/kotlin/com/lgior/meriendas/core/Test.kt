@@ -73,6 +73,47 @@ class Test {
         Assertions.assertEquals(6, meriendas.size)
         println(meriendas.joinToString(System.lineSeparator()))
     }
+
+    @Test
+    fun `repartir las preparaciones entre todas las familias`() {
+        //Lunes: Lopez
+        //Martes: Repetidez
+        //Miercoles: Miranda
+        //Jueves: Jimenez
+        //Viernes: Vicario
+        //Lunes: -> Debe elegir Repetidez
+        //Martes -> Lopez
+        //Miercoles -> Jimenez
+
+        //Familias: Lopez, Repetidez, Miranda, Jimenez, Vicario
+        //Lunes: Lopez
+        //Martes: Repetidez
+        //Miercoles: Miranda
+        //Jueves: Jimenez
+        //Viernes: Vicario
+        //-------------------
+        //Lunes: Repetidez
+        //Martes: Lopez
+        //Miercoles: Jimenez
+        //Jueves: Miranda
+        //Viernes: Lopez
+        //-------------------
+        //Lunes: Vicario
+        //Martes: Miranda
+        //Miercoles: Repetidez
+        //Jueves: Vicario
+        //Viernes:
+
+
+        //dado un servicio de familias
+        //donde la familia Repetidez ya preaparo cebada
+        //dado que aun una familia no preparo cebada
+        //dado que toca preparar cebada
+        //cuando calculo la proxima merienda
+
+        //se debe seleccionar a la familia Ceballo para la cebada
+        //se debe seleccionar a la familia Repetidez para preparar mijo
+    }
 }
 
 

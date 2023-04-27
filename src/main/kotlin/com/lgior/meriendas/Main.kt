@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
     val calculadorDeMerienda = CalculadorDeMerienda(servicioDeDias, servicioFamilias, servicioPreparaciones)
 
     val meriendas =
-        calculadorDeMerienda.calcularMerienda("13 Mar 2023".toLocalDate(), "31 May 2023".toLocalDate())
+        calculadorDeMerienda.calcularMerienda("03 May 2023".toLocalDate(), "31 May 2023".toLocalDate())
 
     CsvExporter.export(meriendas)
 }

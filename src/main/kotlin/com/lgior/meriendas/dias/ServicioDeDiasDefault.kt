@@ -13,7 +13,7 @@ import java.time.temporal.ChronoUnit
  * "adivinar" cuantos dias hay y saltearme feriados
  */
 class ServicioDeDiasDefault(private val inicioDeClases: LocalDate, archivoDeFeriados: String) : ServicioDeDias {
-    private val inicioDelAño: LocalDate = "01 Jan 2023".toLocalDate()
+    private val inicioDelAño: LocalDate = inicioDeClases
 
     private val semanaHabil: Set<DayOfWeek> =
         setOf(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)

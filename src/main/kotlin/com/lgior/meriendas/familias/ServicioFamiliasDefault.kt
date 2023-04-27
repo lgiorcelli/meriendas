@@ -2,12 +2,10 @@ package com.lgior.meriendas.familias
 
 import java.io.File
 
-class ServicioFamiliasDefault(fileName: String) : ServicioFamilias {
-    private val familias: List<Familia>
+class ServicioFamiliasDefault(private val familias: List<Familia>) : ServicioFamilias {
+    constructor(fileName: String) : this(readCsv(fileName))
 
-    init {
-        this.familias = readCsv(fileName)
-    }
+
 
     override fun obtenerFamiliaAAsignar(diasDesdeElInicoDeClases: Int): Familia {
         val posicion = diasDesdeElInicoDeClases.mod(familias.size)
@@ -18,14 +16,17 @@ class ServicioFamiliasDefault(fileName: String) : ServicioFamilias {
         return familias
     }
 
-    private fun readCsv(fileName: String): List<Familia> {
-        val resource = this::class.java.getResource("/familias_1.csv")
-        val file = File(resource.file)
-        val inputStream = file.inputStream()
-        val reader = inputStream.bufferedReader()
-        return reader.lineSequence()
-            .filter { it.isNotBlank() }
-            .map { Familia(it.split(";")[0]) }
-            .toList()
+    companion object {
+        private fun readCsv(fileName: String): List<Familia> {
+            val resource = this::class.java.getResource("/familias_1.csv")
+            val file = File(resource.file)
+            val inputStream = file.inputStream()
+            val reader = inputStream.bufferedReader()
+            return reader.lineSequence()
+                .filter { it.isNotBlank() }
+                .map { Familia(it.split(";")[0]) }
+                .toList()
+        }
+
     }
 }
