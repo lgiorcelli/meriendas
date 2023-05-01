@@ -38,6 +38,17 @@ class IteradorTest {
         proximo = iterador.proximoQueCumpla(soloPares)
         assertEquals(4, proximo)
     }
+
+    @Test
+    fun `debe iterar todo el listado tomando los menores`() {
+        val valores = listOf(1, 2, 3, 4)
+        val iterador = Iterador(valores)
+
+        for (i in 1..4) {
+            assertEquals(i, iterador.tomarElMenorSegun { _ -> 0 })
+        }
+
+    }
 }
 
 class SoloPares : Restriccion<Int> {

@@ -10,7 +10,7 @@ import com.lgior.meriendas.shared.toLocalDate
 fun main(args: Array<String>) {
 
     val servicioDeDias = ServicioDeDiasDefault(
-        "13 Mar 2023".toLocalDate(),
+        "01 May 2023".toLocalDate(),
         "/Users/workia/sources/mio/meriendas/src/main/resources/feriados.txt"
     )
     val servicioFamilias =
@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
     val calculadorDeMerienda = CalculadorDeMerienda(servicioDeDias, servicioFamilias, servicioPreparaciones)
 
     val meriendas =
-        calculadorDeMerienda.calcularMerienda("03 May 2023".toLocalDate(), "31 May 2023".toLocalDate())
+        calculadorDeMerienda.calcularMerienda("02 May 2023".toLocalDate(), "30 Jun 2023".toLocalDate())
 
     CsvExporter.export(meriendas)
 }
