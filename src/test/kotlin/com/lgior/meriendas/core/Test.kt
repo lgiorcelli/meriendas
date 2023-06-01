@@ -8,18 +8,13 @@ import com.lgior.meriendas.familias.ServicioFamilias
 import com.lgior.meriendas.familias.ServicioFamiliasDefault
 import com.lgior.meriendas.meriendas.ServicioPreparaciones
 import com.lgior.meriendas.meriendas.ServicioPreparacionesDefault
-import com.lgior.meriendas.shared.Iterador
 import com.lgior.meriendas.shared.toLocalDate
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
-import org.mockito.kotlin.any
-import org.mockito.kotlin.whenever
-import kotlin.test.Ignore
+import java.util.concurrent.atomic.AtomicInteger
 
 class Test {
 
@@ -77,7 +72,7 @@ class Test {
 
         val meriendas = calculadorDeMerienda.calcularMerienda(inicio, unaSemanaDespues)
 
-        Assertions.assertEquals(6, meriendas.size)
+        assertEquals(6, meriendas.size)
         println(meriendas.joinToString(System.lineSeparator()))
     }
 
@@ -110,90 +105,61 @@ class Test {
     }
 
 
-    @Test
-    @Ignore
-    fun `tengo que elegir familia en base al orden y a una regla de meriendas ya preparadas`() {
-        val familiasEnOrden = TestMother.unaListaDeFamilias(4)
-        val iterador = Iterador(familiasEnOrden)
+}
 
-        val arroz = "Arroz"
-        val cebada = "Cebada"
-        val mijo = "Mijo"
-        val centeno = "Centeno"
-        val avena = "Avena"
-        // dado que toca preparar Cebada
-
-        val xxx = Mockito.mock(XXX::class.java)
-        // dado q la flia Alvarez ya preparo Arroz y mijo
-        whenever(xxx.vecesQuePreparo(anyString(), any())).thenReturn(0)
-        val familiaAlvarez = familiasEnOrden[0]
-        whenever(xxx.vecesQuePreparo(arroz, familiaAlvarez)).thenReturn(1)
-        whenever(xxx.vecesQuePreparo(mijo, familiaAlvarez)).thenReturn(1)
-        // dado q la flia Blanco ya preparo Cebada y Mijo
-        val familiaBlanco = familiasEnOrden[1]
-        whenever(xxx.vecesQuePreparo(cebada, familiaBlanco)).thenReturn(1)
-        whenever(xxx.vecesQuePreparo(mijo, familiaBlanco)).thenReturn(1)
-        // dado q la flia Castro ya preparo Avena y Centeno
-        val familiaCastro = familiasEnOrden[2]
-        whenever(xxx.vecesQuePreparo(avena, familiaCastro)).thenReturn(1)
-        whenever(xxx.vecesQuePreparo(centeno, familiaCastro)).thenReturn(1)
-        // dado q la flia Dominguez ya preparo Arroz y Centeno
-        val familiaDominguez = familiasEnOrden[3]
-        whenever(xxx.vecesQuePreparo(arroz, familiaDominguez)).thenReturn(1)
-        whenever(xxx.vecesQuePreparo(centeno, familiaDominguez)).thenReturn(1)
-
-        // Cuando busco el proximo candidato para cocinar: Arroz
-        //la flia elegida es Blanco
-        var proximo = obtenerProximoAsignadoPara(familiasEnOrden) { xxx.vecesQuePreparo(arroz, it) }
-        Assertions.assertEquals(familiaBlanco, proximo)
-
-
-
-
-        //(sin actualizar)
-        // Cuando busco el proximo candidato para cocinar: Cebada
-        //la flia elegida es Alvarez
-        proximo = obtenerProximoAsignadoPara(familiasEnOrden) { xxx.vecesQuePreparo(cebada, it) }
-
-        val menor = iterador.tomarElMenorSegun { xxx.vecesQuePreparo(centeno, it) }
-        Assertions.assertEquals(familiaAlvarez, menor)
-
-        //(sin actualizar)
-        // Cuando busco el proximo candidato para cocinar: Mijo
-        //la flia elegida es Castro
-
-        proximo = obtenerProximoAsignadoPara(familiasEnOrden) { xxx.vecesQuePreparo(mijo, it) }
-        proximo = iterador.tomarElMenorSegun { xxx.vecesQuePreparo(mijo, it) }
-        Assertions.assertEquals(familiaCastro, proximo)
-
-        //(sin actualizar)
-        // Cuando busco el proximo candidato para cocinar: Centeno
-        //la flia elegida es Alvarez
-        proximo = obtenerProximoAsignadoPara(familiasEnOrden) { xxx.vecesQuePreparo(centeno, it) }
-        proximo = iterador.tomarElMenorSegun { xxx.vecesQuePreparo(centeno, it) }
-        Assertions.assertEquals(familiaAlvarez, proximo)
-
-        //(sin actualizar)
-        // Cuando busco el proximo candidato para cocinar: Avena
-        //la flia elegida es Alvarez
-        proximo = obtenerProximoAsignadoPara(familiasEnOrden) { xxx.vecesQuePreparo(avena, it) }
-        proximo = iterador.tomarElMenorSegun { xxx.vecesQuePreparo(centeno, it) }
-        Assertions.assertEquals(familiaAlvarez, proximo)
-
-        println("iterador = ${iterador}")
-
-
-    }
-
-    private fun obtenerProximoAsignadoPara(familias: List<Familia>, function: (Familia) -> Int): Familia {
-        return familias.minBy(function)
-    }
-
+interface HistoricoDePreparaciones {
+    fun contarPreparacion(preparacion: Preparacion, familia: Familia)
+    fun vecesQuePreparo(preparacion: Preparacion, familia: Familia): Int
+    fun familiasQueMenosVecesPrepararon(familias: List<Familia>, preparacion: Preparacion): List<Familia>
 
 }
 
-interface XXX {
-    fun vecesQuePreparo(preparacion: String, familia: Familia): Int
+class DefaultHistoricoDePreparaciones(familias: List<Familia>) : HistoricoDePreparaciones {
+    private val contadoresPorPreparaciones: MutableMap<Preparacion, MutableMap<Familia, AtomicInteger>> = mutableMapOf(
+        Preparacion.Arroz to familias.associateWith { AtomicInteger(0) }.toMutableMap(),
+        Preparacion.Cebada to familias.associateWith { AtomicInteger(0) }.toMutableMap(),
+        Preparacion.Mijo to familias.associateWith { AtomicInteger(0) }.toMutableMap(),
+        Preparacion.Centeno to familias.associateWith { AtomicInteger(0) }.toMutableMap(),
+        Preparacion.Avena to familias.associateWith { AtomicInteger(0) }.toMutableMap(),
+    )
+    private val contadorDePreparacionesPorFamilia: MutableMap<Preparacion, MutableMap<Familia, Int>> = mutableMapOf()
+    private val totalesPorFamilia: MutableMap<Familia, Int> = mutableMapOf()
+    override fun contarPreparacion(preparacion: Preparacion, familia: Familia) {
+        val contadorPorFamilia = contadorDePreparacionesPorFamilia[preparacion]
+        if (contadorPorFamilia == null) {
+            contadorDePreparacionesPorFamilia[preparacion] = mutableMapOf(familia to 1)
+        } else {
+            val veces = contadorPorFamilia[familia] ?: 0
+            contadorPorFamilia[familia] = veces.inc()
+        }
+
+        incrementTotals(familia)
+
+        contadoresPorPreparaciones[preparacion]?.get(familia)?.incrementAndGet()
+    }
+
+    private fun incrementTotals(familia: Familia) {
+        val totales = totalesPorFamilia[familia] ?: 0
+        totalesPorFamilia[familia] = totales.inc()
+    }
+
+    override fun vecesQuePreparo(preparacion: Preparacion, familia: Familia): Int {
+        return contadorDePreparacionesPorFamilia[preparacion]?.get(familia) ?: 0
+    }
+
+    override fun familiasQueMenosVecesPrepararon(familias: List<Familia>, preparacion: Preparacion): List<Familia> {
+        val contadorPorPreparacion =
+            contadoresPorPreparaciones[preparacion] ?: throw RuntimeException("No hay contador para $preparacion")
+        return contadorPorPreparacion.keys.sortedBy { getValueOf(contadorPorPreparacion, it) }
+    }
+
+    private fun getValueOf(
+        contadorPorPreparacion: MutableMap<Familia, AtomicInteger>,
+        familia: Familia
+    ): Int {
+        return contadorPorPreparacion[familia]?.get()
+            ?: throw RuntimeException("No hay numeros registrados para $familia")
+    }
 
 }
 
