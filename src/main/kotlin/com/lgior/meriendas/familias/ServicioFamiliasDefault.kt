@@ -3,7 +3,7 @@ package com.lgior.meriendas.familias
 import java.io.File
 
 class ServicioFamiliasDefault(private val familias: List<Familia>) : ServicioFamilias {
-    constructor(fileName: String) : this(readCsv(fileName))
+    constructor(fileName: String) : this(readCsv())
 
 
 
@@ -17,7 +17,7 @@ class ServicioFamiliasDefault(private val familias: List<Familia>) : ServicioFam
     }
 
     companion object {
-        private fun readCsv(fileName: String): List<Familia> {
+        fun readCsv(): List<Familia> {
             val resource = this::class.java.getResource("/familias_1.csv")
             val file = File(resource.file)
             val inputStream = file.inputStream()

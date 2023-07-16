@@ -1,6 +1,7 @@
 package com.lgior.meriendas.shared
 
 class Iterador<T : Any>(private val valores: List<T>) {
+    private val logEnabled: Boolean = false
     private var copy: MutableList<T> = valores.toMutableList()
 
     fun next(): T {
@@ -13,13 +14,24 @@ class Iterador<T : Any>(private val valores: List<T>) {
     }
 
     private fun sendToLastPosition(it: T) {
-        println("Status pre update = $copy")
+        logPreviousStatus()
         copy.remove(it)
         copy.add(it)
         if (copy.isEmpty()) {
+            println("------ Refilling iterator -----")
             copy = valores.toMutableList()
         }
-        println("Status after update = $copy")
+        logAfterStatus()
+    }
+
+    private fun logAfterStatus() {
+        if (logEnabled)
+            println("Status after update = $copy")
+    }
+
+    private fun logPreviousStatus() {
+        if (logEnabled)
+            println("Status pre update = $copy")
     }
 
     fun tomarElMenorSegun(function: (T) -> Int): T {
